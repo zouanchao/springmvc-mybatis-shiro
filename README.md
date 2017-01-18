@@ -11,7 +11,8 @@
 [JDK 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 [MySQL数据库，我使用的是MySQL 5.7](https://dev.mysql.com/downloads/mysql/)
 [Maven 3.3.9](http://maven.apache.org/download.cgi)
-[IDE 我用的Idea，当然也可以用Eclipse](http://www.jetbrains.com/idea/)
+IDE 我用的Idea，当然也可以用Eclipse
+[Idea 下载地址](http://www.jetbrains.com/idea/)
 [Tomcat 7+（我用的tomcat7）](http://tomcat.apache.org/download-70.cgi)
 
 
