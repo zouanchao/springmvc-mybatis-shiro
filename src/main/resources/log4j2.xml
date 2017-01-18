@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--设置log4j2的自身log级别为warn -->
+<configuration status="WARN">
+	<properties>
+		<Property name="LOG_NAME">springmvc_mybatis_shiro</Property>
+	</properties>
+
+	<appenders>
+		<!-- 定义控制台输出 -->
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout
+				pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+		</Console>
+		<!-- 程序员调试日志 
+        <RollingFile name="DevLog" fileName="D:/develop/logs/${LOG_NAME}/${LOG_NAME}_dev.log"
+            filePattern="D:/develop/logs/${LOG_NAME}/${LOG_NAME}.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingFile>  
+		<RollingFile name="Rolling" fileName="D:/develop/logs/${LOG_NAME}/${LOG_NAME}.log"
+			filePattern="D:/develop/logs/${LOG_NAME}/${LOG_NAME}.%d{yyyy-MM-dd}" append="true">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss}   %-5level [%thread][%file:%line] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="1" />
+			</Policies>
+			<DefaultRolloverStrategy max="180" />
+		</RollingFile> --> 
+	</appenders>
+	<loggers>
+		<!-- Root Logger<logger name="org.springframework" level="INFO"></logger> -->
+		<root level="DEBUG">
+			<appender-ref ref="Console" />
+		</root>
+	</loggers>
+</configuration>

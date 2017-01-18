@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd" >
+	
+	<description>Database Configuration</description>
+	<!-- 引入数据库属性文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- ========================================================================================== -->
+	<!-- 配置数据源-->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc_url}" />
+		<property name="username" value="${jdbc_username}" />
+		<property name="password" value="${jdbc_password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="5" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="1" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 连接池最大空闲 该参数已废弃 -->
+		<!-- property name="maxIdle" value="20" / -->
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- <property name="poolPreparedStatements" value="true" /> <property 
+			name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
+		<property name="validationQuery" value="${validationQuery}" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->  
+        <property name="poolPreparedStatements" value="true" />  
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />  
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭ABanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		<!-- 监控统计用的filter:stat，日志用的filter:log4j，防御SQL注入的filter:wall -->
+		<!-- <property name="filters" value="mergeStat,wall" /> -->
+		<property name="filters" value="stat,wall" />
+	</bean>
+	 
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- MyBatis配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!-- 自动扫描entity目录, 省掉mybatis.xml里的手工配置 -->
+		<property name="mapperLocations" value="classpath*:com/cooper/**/mapping/*.xml" />
+		<!-- 指定数据源 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- MApper接口所在包名，Spring会自动查找其下的MApper -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cooper.**.dao" />
+		<!-- 3.2.2版本新特性，markerInterface可以起到MAppers配置的作用，详细情况需要看Marker接口类 -->
+        <property name="markerInterface" value="com.cooper.common.core.db.IMapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 使用注解方式的事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+</beans>

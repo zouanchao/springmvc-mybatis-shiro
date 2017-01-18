@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!-- 引入属性文件 -->
+  <properties resource="db.properties"/>
+	  <context id="dataBaseTables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+	    <!--==================== 生成的Java文件的编码 ====================-->
+	    <property name="javaFileEncoding" value="UTF-8"/>
+	    <!--==================== 配置生成插件：此处用通用Mapper的generator生成插件  ====================-->
+	    <plugin type="${mapper.plugin}">
+	      <property name="mappers" value="${mapper.Mapper}"/>
+	    </plugin>
+	    <!--=================== 数据连接配置 ============================-->
+	    <jdbcConnection driverClass="${driverClassName}"
+	                    connectionURL="${jdbc_url}"
+	                    userId="${jdbc_username}"
+	                    password="${jdbc_password}">
+	    </jdbcConnection>
+	    <!--=================== 生成mapper信息时，必须对应修改以下内容  =======================-->
+		<javaModelGenerator targetPackage="${generator.javaModel}" targetProject="src/main/java">
+				<property name="enableSubPackages" value="false" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="${generator.javaMap}"  targetProject="src/main/java" >
+	        <property name="enableSubPackages" value="false"/>
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="${generator.javaDao}" targetProject="src/main/java" type="XMLMAPPER" >
+			<property name="enableSubPackages" value="false"/>
+		</javaClientGenerator>
+		<!--==================== 生成 ================-->
+		<!-- 是否使用表中实体列名，true-使用，false-mybaits会转为JAVA驼峰命名方式 -->
+		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名，生成多少张表对应添多少个table %所有表 -->
+		<table tableName="${generator.tableName}" >
+			<property name="useActualColumnNames" value="false" />
+		</table>
+	  </context>
+</generatorConfiguration>
