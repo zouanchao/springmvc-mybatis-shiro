@@ -24,9 +24,9 @@
 <div class="container">
     <div class="page-header">
         <div>
-            <span>Error 403</span>
-            <span>Sorry，您没有权限访问该链接地址</span>
-            <span>Sorry，You are not authorized perform this action.</span>
+            <label><span style="font-size: 40px;">Error</span>&nbsp;&nbsp;&nbsp;<span style="font-size: 100px;">403</span></label><br/>
+            <label>对不起，您没有权限访问该链接地址</label><br/>
+            <label>Sorry，You are not authorized perform this action.</label><br/>
         </div>
     </div>
 </div>

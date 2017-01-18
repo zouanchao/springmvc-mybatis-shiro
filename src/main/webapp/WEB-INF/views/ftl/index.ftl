@@ -257,13 +257,13 @@
 							<span class="menu-header-title">其他</span>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-circle-o text-red"></i> <span>导入</span></a>
+							<a href="#"><i class="fa fa-circle-o "></i> <span>菜单管理</span></a>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>警告</span></a>
+							<a href="#"><i class="fa fa-circle-o"></i> <span>权限管理</span></a>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>信息</span></a>
+							<a href="#"><i class="fa fa-circle-o "></i> <span>角色管理</span></a>
 						</li>
 					</ul>
 
