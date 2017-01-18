@@ -38,7 +38,7 @@
 ![后台首页](http://git.oschina.net/uploads/images/2017/0118/095948_6ae5f7a7_614740.png "后台首页")
 
 **3.无权限访问页**
-![无权限访问页](http://git.oschina.net/uploads/images/2017/0118/100100_191041e9_614740.png "无权限访问页")
+![无权限访问页](http://git.oschina.net/uploads/images/2017/0118/100145_458a5cea_614740.png "无权限访问页")
 
 
 
